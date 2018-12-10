@@ -1,0 +1,66 @@
+html {
+    font-size: 10px;
+    background: url(http://pearldrum.com/common/assets/images/background.jpg);
+    background-size: cover;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+.title {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleText {
+    font-size: 5rem;
+    margin: 1rem;
+    color: rgb(207, 159, 27)
+
+
+}
+
+.keys {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.key {
+    border: .1rem solid beige;
+    box-shadow: 0 8px 6px -6px rgba(95, 145, 160, 0.932);
+    border-radius: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem .5rem;
+    width: 10rem;
+    text-align: center;
+    color: rgb(207, 159, 27);
+    background: rgb(27, 26, 26, 0.7);
+    text-shadow: 0 0 1.5rem rgba(95, 145, 160, 0.932);
+    transition: all .07s ease;
+}
+
+.playing {
+    transform: scale(1.1);
+    border-color: rgba(95, 145, 160);
+    
+}
+
+kbd {
+    display: block;
+    font-size: 4rem;
+    color: white;
+}
+
+.sound {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+}
