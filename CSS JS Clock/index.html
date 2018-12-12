@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+		<div class="clock">
+			<div class="circul">
+				<div class="hand seconds"></div>
+				<div class="hand minutes"></div>
+				<div class="hand hours"></div>
+			</div>
+		</div>
+
+	</body>
+
+  <style>
+		html {
+			background-image: url('https://vignette.wikia.nocookie.net/survivor-org/images/1/15/Gray-background-15-Best-Wallpaper.jpg/revision/latest?cb=20160217004920');
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+
+		.clock {
+			display: flex;
+			flex: 1;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.circul {
+			border: .4rem solid black;
+			border-radius: 50%;
+			width: 20rem;
+			height: 20rem;
+			position: relative;
+		}
+
+		.hand {
+			position: absolute;
+			top: 50%;
+			transform-origin: 100%;
+			transition: all 0.05s;
+			transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+		}
+
+		.seconds {
+			width: 48%;
+			border: .1rem solid red;
+			left: 2%;
+			transform: rotate(90deg);
+		}
+
+		.minutes {
+			width: 45%;
+			border: .15rem solid rgb(26, 16, 16);
+			left: 5%;
+			transform: rotate(90deg);
+		}
+
+		.hours {
+			width: 42%;
+			border: .15rem solid rgb(26, 16, 16);
+			left: 8%;
+			transform: rotate(90deg);
+		}
+
+		body, html {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+
+	<!------------------------------------------------>
+  <script>
+		// select class for next manipulating
+		const secondHand = document.querySelector('.seconds'); 
+		const minuteHand = document.querySelector('.minutes');
+		const hourHand = document.querySelector('.hours');
+		
+		// this func gets real time (seconds, minutes, hours) and then convert time to degree
+		// next using our previosly created selector chaning degree of the element
+		function setDate () {
+			const current = new Date()
+			const seconds = current.getSeconds()
+			const minutes = current.getMinutes()
+			const hours = current.getHours()
+
+			const secondsDegree = ((seconds / 60) * 360) + 90;
+			const minutesDegree = ((minutes / 60) * 360) + 90;
+			const hoursDegree = ((hours / 12) * 360) + 90; 
+			
+			secondHand.style.transform = `rotate(${secondsDegree}deg)`
+			minuteHand.style.transform = `rotate(${minutesDegree}deg)`
+			hourHand.style.transform = `rotate(${hoursDegree}deg)`
+
+		}
+
+		setInterval(setDate, 1000) // running setDate func with 1sec interval
+	
+	</script>
+</html>
