@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>CSS Variables</title>
+</head>
+<body>
+    <h2>CSS Variables Update with <span>JS</span></h2>
+
+    <div class="controls">
+        <label for="spacing">Spaicing</label>
+        <input type="range" name="spacing" min="10" max="250" value="10" data-sizing="px">
+
+        <label for="blur">Blur</label>
+        <input type="range" name="blur" min="0" max="250" value="10" data-sizing="px">
+
+        <label for="base">Base Color</label>
+        <input type="color" name="base" value="#193549">
+    </div>
+
+    <img src="./img/newyork.jpg" alt="newyork">
+</body>
+
+<style>
+    :root {
+        --base: #193549;
+        --spacing: 10px;
+        --blur: 0px;
+    }
+
+    h2>span {
+        color: var(--base)
+    }
+
+    img {
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+    }
+
+    body {
+        font-size: 30px;
+        background-color: antiquewhite;
+        text-align: center;
+        font-family: monospace;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    .controls {
+        margin-bottom: 50px;
+    }
+
+</style>
+
+<script>
+// first we select all inputs in the page, so when they change, we can update our css veriables
+    const inputs = document.querySelectorAll('.controls input')
+    
+    function handleUpdate () {
+        /* this.value return any changes made to input - but it comes withow suffix (px)
+        so, to grub the suffix, we created custom data attribute in the html > input called data-sizing.
+        to be able to grub this attributes, we use dataset, that's an object with data attribute you created
+        */
+       const suffix = this.dataset.sizing || ''; // for those inputes witout suffix we use OR 
+       
+       //now we select css variable
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+    }
+    // itarate Nodelist for each input and add 'addEventListener' to it for 'change' event, then we pass it to inputHandler
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+</script>
+</html>
